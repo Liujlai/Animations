@@ -48,9 +48,6 @@ class ViewController: UIViewController {
 extension ViewController: StackScrollViewDelegate {
     func stackScrollViewBtnDidClick(view: StackScrollView, model: StackModel, index:Int) {
         print("点击了\(model.title!)");
-//        Defaults[.username] = "joe"
-//        MBProgressHUD.showInfo(Defaults[.username]!)
-//        navigate(.login)//跳转到test
         let viewController = DetailViewController()
         viewController.cc_setZoomTransition(originalView: view.liveBtns[index])
         viewController.img.sd_setImage(with: URL(string: model.imageUrl!), placeholderImage: UIImage(named: "noNet"))

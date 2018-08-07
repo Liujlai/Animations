@@ -21,5 +21,4 @@ class CardsViewController: UIViewController {
         view.backgroundColor = UIColor.white
         view.addSubviews(btn)
     }
-
 }
