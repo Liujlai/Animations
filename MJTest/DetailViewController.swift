@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
     }()
     lazy var tipsLab: UILabel = {
         
-        return Label.str("向右滑动后点击箭头换页").color(kAppColor)
+        return Label.str("向右滑动或点击箭头换页").color(kAppColor)
     }()
     lazy var img: UIImageView = {
         let img = UIImageView()
