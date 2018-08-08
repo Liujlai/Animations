@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
     }()
     lazy var tipsLab: UILabel = {
         
-        return Label.str("向右滑动或点击箭头换页").color(kAppColor)
+        return Label.str("向左滑动或点击箭头换页").color(kAppColor)
     }()
     lazy var img: UIImageView = {
         let img = UIImageView()
@@ -56,20 +56,7 @@ class DetailViewController: UIViewController {
             make.left.equal(40)
             make.top.equal(80)
         }
-        titlelab.text = """
-        天地匆匆
-        惊鸿而过
-        
-        遑遑无归
-        闲云逸鹤
-        
-        引势而流
-        鸿门乱局
-        
-        丹歌起势 同风而起
-        
-        卧龙低伏 入我阵来
-        """
+        titlelab.text = KPLACEHOLDER
         
         tipsLab.makeCons {
             $0.centerX.equal(0)
@@ -80,7 +67,7 @@ class DetailViewController: UIViewController {
         let swip = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(swip:)))
         //设置滑动方向
         //如果UISwipeGestureRecognizer在不指定方向的时候，默认向右滑动才会触发事件。如果要指定方向，需要设置direction属性
-        swip.direction = .right
+        swip.direction = .left
         self.view.addGestureRecognizer(swip)
         // 点击手势
         titlelab.onClick {[unowned self] tit in
@@ -97,9 +84,9 @@ class DetailViewController: UIViewController {
     
     func setupAnimator(){
         let animator = ChainableAnimator(view: titlelab)
-        animator.move(x: 500).spring.easeIn.make(alpha: 0.0).animate(t: 1.0);
+        animator.move(x: -500).spring.easeIn.make(alpha: 0.0).animate(t: 1.0);
         animator.completion = {
-            animator.move(x: -800).thenAfter(t: 0.1).move(x: 300).spring.easeIn.make(alpha: 1.0).animate(t: 0.5);
+            animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.5);
         }
     }
     

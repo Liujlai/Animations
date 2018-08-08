@@ -7,14 +7,24 @@
 //
 
 import UIKit
-
+import  ChainableAnimations
 class ViewController: UIViewController {
 
+    var isscroll = 1
+    lazy var sideView: SideView = {
+        let sideView = SideView()
+        return sideView.pin(.xywh(-300,0,300,kScreenH))
+    }()
     lazy var scrollView: StackScrollView = {
         let scrollView = StackScrollView()
         scrollView.delegate = self
         
         return scrollView
+    }()
+    lazy var btn: UIButton = {
+        return Button.str("❂").color(kAppColor).font(38).pin(.maxX(-20),.y(20)).onClick({[weak self] _ in
+            self!.setupAnimator()
+        })
     }()
     var models: [StackModel] = {
         let models = [
@@ -29,18 +39,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-        view.addSubview(scrollView)
+        view.addSubviews(sideView,scrollView,btn)
         scrollView.makeCons { (make) in
             make.edge.equal(view)
         }
-        
         scrollView.reloadData(lives: models)
+        
+        sideView.reloadData(kWhiteColor,"丹歌起势",KPLACEHOLDER)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setupAnimator(){
+        let animator = ChainableAnimator(view: btn)
+        let an = ChainableAnimator(view: scrollView)
+        let side = ChainableAnimator(view: sideView)
+        switch btn.tag {
+        case 1:
+            animator.rotate(angle: 90).animate(t: 0.2);
+            animator.completion = {
+                animator.rotate(angle: 180).animate(t: 0.5);
+                an.move(x: -300).animate(t: 0.5);
+                side.move(x: -300).animate(t: 0.5)
+            }
+            btn.tag = 0
+        default:
+            animator.rotate(angle: -90).animate(t: 0.2);
+            animator.completion = {
+                animator.rotate(angle: -180).animate(t: 0.5);
+                an.move(x: 300).animate(t: 0.5);
+                side.move(x: 300).animate(t: 0.5)
+            }
+            btn.tag = 1
+        }
+
     }
 
 }

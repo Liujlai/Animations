@@ -23,6 +23,7 @@
 		7810F38B211830E9001821AD /* CCZoomTransitionVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F387211830E9001821AD /* CCZoomTransitionVCExtension.swift */; };
 		7810F38D21183149001821AD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F38C21183149001821AD /* DetailViewController.swift */; };
 		7810F38F21184CFB001821AD /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F38E21184CFA001821AD /* CardsViewController.swift */; };
+		78BD099C211A9A9800BD2666 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD099B211A9A9800BD2666 /* SideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		7810F387211830E9001821AD /* CCZoomTransitionVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCZoomTransitionVCExtension.swift; sourceTree = "<group>"; };
 		7810F38C21183149001821AD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7810F38E21184CFA001821AD /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		78BD099B211A9A9800BD2666 /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				7810F37A211829F6001821AD /* Common.swift */,
 				7810F36821182699001821AD /* AppDelegate.swift */,
 				7810F36A21182699001821AD /* ViewController.swift */,
+				78BD099B211A9A9800BD2666 /* SideView.swift */,
 				7810F38C21183149001821AD /* DetailViewController.swift */,
 				7810F38E21184CFA001821AD /* CardsViewController.swift */,
 				7810F382211830A1001821AD /* Stack */,
@@ -259,6 +262,7 @@
 				7810F37B211829F6001821AD /* Common.swift in Sources */,
 				7810F37F21182A7E001821AD /* StackModel.swift in Sources */,
 				7810F38F21184CFB001821AD /* CardsViewController.swift in Sources */,
+				78BD099C211A9A9800BD2666 /* SideView.swift in Sources */,
 				7810F36921182699001821AD /* AppDelegate.swift in Sources */,
 				7810F38A211830E9001821AD /* CCSwipBackPresentationController.swift in Sources */,
 				7810F38121182A7E001821AD /* StackView.swift in Sources */,
@@ -408,7 +412,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MJTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.youlu.MJTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -423,7 +430,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MJTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.youlu.MJTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
