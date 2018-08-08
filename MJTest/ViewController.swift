@@ -10,10 +10,10 @@ import UIKit
 import  ChainableAnimations
 class ViewController: UIViewController {
 
-    var isscroll = 1
+    var s = true
     lazy var sideView: SideView = {
         let sideView = SideView()
-        return sideView.pin(.xywh(-300,0,300,kScreenH))
+        return sideView.pin(.xywh(-300,0,300,kScreenH)).bg(kRandom+",0.5")
     }()
     lazy var scrollView: StackScrollView = {
         let scrollView = StackScrollView()
@@ -45,32 +45,46 @@ class ViewController: UIViewController {
         }
         scrollView.reloadData(lives: models)
         
-        sideView.reloadData(kWhiteColor,"丹歌起势",KPLACEHOLDER)
+        sideView.reloadData(kWhiteColor,"丹歌起势",KPLACEHOLDER,"⚙︎")
+        sideView.setbtn.onClick { [weak self] b in
+            self!.setupSidebtn(b)
+        }
+    }
+    func setupSidebtn(_ setb:UIButton){
+        let b = ChainableAnimator(view: setb)
+        b.move(x: -50).rotate(angle: 360).animate(t: 0.5)
+        b.completion = {
+            ActionSheet.message("设置").tint(kAppColor).action("更改背景", {[weak self] in
+                self?.sideView.bg(kRandom+",0.5")
+                b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
+            }).action("随便点点", {
+                b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
+            }).show()
+            
+        }
     }
 
     func setupAnimator(){
         let animator = ChainableAnimator(view: btn)
         let an = ChainableAnimator(view: scrollView)
         let side = ChainableAnimator(view: sideView)
-        switch btn.tag {
-        case 1:
-            animator.rotate(angle: 90).animate(t: 0.2);
-            animator.completion = {
-                animator.rotate(angle: 180).animate(t: 0.5);
-                an.move(x: -300).animate(t: 0.5);
-                side.move(x: -300).animate(t: 0.5)
-            }
-            btn.tag = 0
-        default:
+        switch s {
+        case true:
             animator.rotate(angle: -90).animate(t: 0.2);
             animator.completion = {
                 animator.rotate(angle: -180).animate(t: 0.5);
                 an.move(x: 300).animate(t: 0.5);
                 side.move(x: 300).animate(t: 0.5)
             }
-            btn.tag = 1
+        default:
+            animator.rotate(angle: 90).animate(t: 0.2);
+            animator.completion = {
+                animator.rotate(angle: 180).animate(t: 0.5);
+                an.move(x: -300).animate(t: 0.5);
+                side.move(x: -300).animate(t: 0.5)
+            }
         }
-
+        s = !s
     }
 
 }
@@ -78,6 +92,9 @@ class ViewController: UIViewController {
 extension ViewController: StackScrollViewDelegate {
     func stackScrollViewBtnDidClick(view: StackScrollView, model: StackModel, index:Int) {
         print("点击了\(model.title!)");
+        if !s {
+            setupAnimator()
+        }
         let viewController = DetailViewController()
         viewController.cc_setZoomTransition(originalView: view.liveBtns[index])
         viewController.img.sd_setImage(with: URL(string: model.imageUrl!), placeholderImage: UIImage(named: "noNet"))

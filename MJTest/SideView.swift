@@ -20,10 +20,13 @@ class SideView: UIView {
     lazy var sublab: UILabel = {
         return Label.color(kWhiteColor).font(18).align(.center).lines(0)
     }()
+    lazy var setbtn: UIButton = {
+        return Button.color(kAppColor).font(38)
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubviews(icon,titlelab,sublab)
+        self.addSubviews(icon,titlelab,sublab,setbtn)
         icon.makeCons {
             $0.centerX.equal(0)
             $0.top.equal(80)
@@ -39,11 +42,16 @@ class SideView: UIView {
             $0.left.equal(15)
             $0.right.equal(-15)
         }
+        setbtn.makeCons {
+            $0.bottom.equal(-20)
+            $0.right.equal(-20)
+        }
     }
-    func reloadData(_ img:String,_ title:String,_ sub:String){
+    func reloadData(_ img:String,_ title:String,_ sub:String,_ set:Any){
         icon.bg(img)
         titlelab.text = title
         sublab.text = sub
+        setbtn.str(set)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
