@@ -24,9 +24,14 @@ class ViewController: UIViewController {
         return scrollView
     }()
     lazy var btn: UIButton = {
-        return Button.str("❂").color(kAppColor).font(38).pin(.maxX(-20),.y(20)).onClick({[weak self] _ in
-            self!.setupAnimator()
-        })
+        return Button.str("❂")
+            .color(kAppColor)
+            .font(38)
+            .pin(.maxX(-10),.y(0))
+            .pin(80,80)
+            .onClick({[weak self] _ in
+                self!.setupAnimator()
+            })
     }()
     var models: [StackModel] = {
         let models = [
@@ -75,6 +80,7 @@ class ViewController: UIViewController {
         let side = ChainableAnimator(view: sideView)
         switch s {
         case true:
+            sideView.icon.startAnimating()
             animator.rotate(angle: -90).animate(t: 0.2);
             animator.completion = {
                 animator.rotate(angle: -180).animate(t: 0.5);
@@ -82,6 +88,7 @@ class ViewController: UIViewController {
                 side.move(x: 300).animate(t: 0.5)
             }
         default:
+            sideView.stop(ken: sideView.icon) //移出屏幕后停止效果
             animator.rotate(angle: 90).animate(t: 0.2);
             animator.completion = {
                 animator.rotate(angle: 180).animate(t: 0.5);

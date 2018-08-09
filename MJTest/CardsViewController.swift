@@ -8,6 +8,7 @@
 
 import UIKit
 import ChainableAnimations
+import DWAnimatedLabel
 class CardsViewController: UIViewController {
 
     lazy var btn: UIButton = {
@@ -16,11 +17,25 @@ class CardsViewController: UIViewController {
             self!.dismiss(animated: true, completion: nil)
         })
     }()
+    lazy var lab: DWAnimatedLabel = {
+        let lab = DWAnimatedLabel()
+        lab.font = UIFont.systemFont(ofSize: 35, weight: .bold)
+        lab.animationType = .shine
+        lab.placeHolderColor = .gray
+        return lab.bg("black").color(kWhiteColor).lines().align(.center)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .black
         view.addSubviews(btn)
-   
+        lab.text = KPLACEHOLDER
+        view.addSubview(lab)
+        lab.makeCons { (make) in
+            make.top.equal(64)
+            make.left.right.bottom.equal(0)
+        }
+        lab.startAnimation(duration: 4.0, nil)
+        
     }
 }

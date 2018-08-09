@@ -8,6 +8,7 @@
 
 import UIKit
 import  ChainableAnimations
+import DWAnimatedLabel
 class DetailViewController: UIViewController {
     
     lazy var btn: UIButton = {
@@ -32,20 +33,24 @@ class DetailViewController: UIViewController {
         img.alpha=0.3
         return img
     }()
-    lazy var titlelab: UILabel = {
-        return Label.bg(kRandom+",0.5")
+    lazy var titlelab: DWAnimatedLabel = {
+        let titlelab = DWAnimatedLabel()
+        titlelab.animationType = .fade
+        titlelab.placeHolderColor = .blue
+        return titlelab.bg(kRandom+",0.5")
             .font("24")
             .radius(8)
             .align(.center)
-            .lines(0)
-            .color(kWhiteColor).addTo(view)
+            .lines()
+            .color(kWhiteColor)
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.bg(kWhiteColor)
-        view.addSubviews(btn,botBtn,img,tipsLab)
+        view.addSubviews(btn,botBtn,img,titlelab,tipsLab)
         setupUI()
         setupGesture()
+        titlelab.startAnimation(duration: 2.0, nil)
     }
     func setupUI() {
         img.makeCons { (make) in
@@ -79,7 +84,7 @@ class DetailViewController: UIViewController {
     }
     @objc func swipeGesture(swip:UISwipeGestureRecognizer) {
         print("开始滑动")
-       self.setupAnimator()
+        self.setupAnimator()
     }
     
     func setupAnimator(){
@@ -88,6 +93,7 @@ class DetailViewController: UIViewController {
         animator.completion = {
             animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.5);
         }
+        titlelab.startAnimation(duration: 4.0, nil)
     }
     
 }

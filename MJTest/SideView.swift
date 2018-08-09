@@ -14,9 +14,8 @@ class SideView: UIView {
          let ken = KenBurnsImageView()
             ken.border(2, kWhiteColor).radius(10)
             ken.layer.masksToBounds = true
-            ken.zoomIntensity = 1
-            ken.setDuration(min: 5, max: 13)
-            ken.startAnimating()
+            ken.zoomIntensity = 0.5  //缩放强度
+            ken.setDuration(min: 0, max: 8) //持续范围
         return ken
     }()
     lazy var titlelab: UILabel = {
@@ -36,7 +35,7 @@ class SideView: UIView {
         icon.makeCons {
             $0.centerX.equal(0)
             $0.top.equal(80)
-            $0.width.height.equal(100)
+            $0.width.height.equal(120)
         }
         titlelab.makeCons {
             $0.top.equal(icon).bottom.offset(40)
