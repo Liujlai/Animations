@@ -23,6 +23,8 @@
 		7810F38B211830E9001821AD /* CCZoomTransitionVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F387211830E9001821AD /* CCZoomTransitionVCExtension.swift */; };
 		7810F38D21183149001821AD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F38C21183149001821AD /* DetailViewController.swift */; };
 		7810F38F21184CFB001821AD /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F38E21184CFA001821AD /* CardsViewController.swift */; };
+		7881B043211C29D3002E44D5 /* KenBurns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881B042211C29D3002E44D5 /* KenBurns.swift */; };
+		7881B045211C29F3002E44D5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881B044211C29F3002E44D5 /* Helpers.swift */; };
 		78BD099C211A9A9800BD2666 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD099B211A9A9800BD2666 /* SideView.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		7810F387211830E9001821AD /* CCZoomTransitionVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCZoomTransitionVCExtension.swift; sourceTree = "<group>"; };
 		7810F38C21183149001821AD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7810F38E21184CFA001821AD /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		7881B042211C29D3002E44D5 /* KenBurns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KenBurns.swift; sourceTree = "<group>"; };
+		7881B044211C29F3002E44D5 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		78BD099B211A9A9800BD2666 /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,7 @@
 				78BD099B211A9A9800BD2666 /* SideView.swift */,
 				7810F38C21183149001821AD /* DetailViewController.swift */,
 				7810F38E21184CFA001821AD /* CardsViewController.swift */,
+				7881B041211C29AD002E44D5 /* KBNS */,
 				7810F382211830A1001821AD /* Stack */,
 				7810F383211830CD001821AD /* CCZoomTransition */,
 				7810F36C21182699001821AD /* Main.storyboard */,
@@ -126,6 +131,15 @@
 				7810F387211830E9001821AD /* CCZoomTransitionVCExtension.swift */,
 			);
 			path = CCZoomTransition;
+			sourceTree = "<group>";
+		};
+		7881B041211C29AD002E44D5 /* KBNS */ = {
+			isa = PBXGroup;
+			children = (
+				7881B044211C29F3002E44D5 /* Helpers.swift */,
+				7881B042211C29D3002E44D5 /* KenBurns.swift */,
+			);
+			path = KBNS;
 			sourceTree = "<group>";
 		};
 		C5E6371AEF67EF1203593515 /* Pods */ = {
@@ -233,12 +247,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MJTest/Pods-MJTest-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChainableAnimations/ChainableAnimations.framework",
 				"${BUILT_PRODUCTS_DIR}/Cupcake/Cupcake.framework",
+				"${BUILT_PRODUCTS_DIR}/DWAnimatedLabel/DWAnimatedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChainableAnimations.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cupcake.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DWAnimatedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7810F38D21183149001821AD /* DetailViewController.swift in Sources */,
+				7881B043211C29D3002E44D5 /* KenBurns.swift in Sources */,
 				7810F36B21182699001821AD /* ViewController.swift in Sources */,
 				7810F389211830E9001821AD /* CCZoomAnimatedTransitioning.swift in Sources */,
 				7810F38B211830E9001821AD /* CCZoomTransitionVCExtension.swift in Sources */,
@@ -265,6 +282,7 @@
 				78BD099C211A9A9800BD2666 /* SideView.swift in Sources */,
 				7810F36921182699001821AD /* AppDelegate.swift in Sources */,
 				7810F38A211830E9001821AD /* CCSwipBackPresentationController.swift in Sources */,
+				7881B045211C29F3002E44D5 /* Helpers.swift in Sources */,
 				7810F38121182A7E001821AD /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,10 +432,7 @@
 				DEVELOPMENT_TEAM = 7T5NXR7M3P;
 				INFOPLIST_FILE = MJTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youlu.MJTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -434,10 +449,7 @@
 				DEVELOPMENT_TEAM = 7T5NXR7M3P;
 				INFOPLIST_FILE = MJTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youlu.MJTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

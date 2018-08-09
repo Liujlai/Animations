@@ -10,8 +10,14 @@ import UIKit
 
 class SideView: UIView {
 
-    lazy var icon: UIImageView = {
-        return ImageView.border(2, kWhiteColor)
+    lazy var icon: KenBurnsImageView = {
+         let ken = KenBurnsImageView()
+            ken.border(2, kWhiteColor).radius(10)
+            ken.layer.masksToBounds = true
+            ken.zoomIntensity = 1
+            ken.setDuration(min: 5, max: 13)
+            ken.startAnimating()
+        return ken
     }()
     lazy var titlelab: UILabel = {
         return Label.color(kWhiteColor).font(24).align(.center)
@@ -30,7 +36,7 @@ class SideView: UIView {
         icon.makeCons {
             $0.centerX.equal(0)
             $0.top.equal(80)
-            $0.width.height.equal(80)
+            $0.width.height.equal(100)
         }
         titlelab.makeCons {
             $0.top.equal(icon).bottom.offset(40)
@@ -48,11 +54,22 @@ class SideView: UIView {
         }
     }
     func reloadData(_ img:String,_ title:String,_ sub:String,_ set:Any){
-        icon.sd_setImage(with: URL(string: img), placeholderImage: #imageLiteral(resourceName: "noNet"))
-        icon.radius(10)
+        icon.fetchImage(URL(string: img)!, placeholder: #imageLiteral(resourceName: "noNet"))
         titlelab.text = title
         sublab.text = sub
         setbtn.str(set)
+    }
+    
+    func stop(ken: KenBurnsImageView) {
+        ken.stopAnimating()
+    }
+    
+    func pause(ken: KenBurnsImageView) {
+        ken.pause()
+    }
+    
+    func resume(ken: KenBurnsImageView) {
+        ken.resume()
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
