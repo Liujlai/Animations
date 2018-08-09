@@ -16,9 +16,11 @@ class CardsViewController: UIViewController {
             self!.dismiss(animated: true, completion: nil)
         })
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         view.addSubviews(btn)
+   
     }
 }

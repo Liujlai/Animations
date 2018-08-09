@@ -42,3 +42,6 @@ let KPLACEHOLDER = """
 卧龙低伏 入我阵来
 """
 
+//如果真机上动画在结束后闪烁在JHAnimationChainLink.m文件146行下加入以下代码
+//self.animationGroup.fillMode = kCAFillModeForwards;
+//self.animationGroup.removedOnCompletion = NO;  ///修改真机动画完成后闪烁的问题

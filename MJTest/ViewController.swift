@@ -11,10 +11,12 @@ import  ChainableAnimations
 class ViewController: UIViewController {
 
     var s = true
+//    侧边栏
     lazy var sideView: SideView = {
         let sideView = SideView()
-        return sideView.pin(.xywh(-300,0,300,kScreenH)).bg(kRandom+",0.5")
+        return sideView.pin(.xywh(-300,0,300,kScreenH)).bg(kRandom+",0.6")
     }()
+    //    Stack
     lazy var scrollView: StackScrollView = {
         let scrollView = StackScrollView()
         scrollView.delegate = self
@@ -38,14 +40,14 @@ class ViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         view.addSubviews(sideView,scrollView,btn)
         scrollView.makeCons { (make) in
             make.edge.equal(view)
         }
         scrollView.reloadData(lives: models)
         
-        sideView.reloadData(kWhiteColor,"丹歌起势",KPLACEHOLDER,"⚙︎")
+        sideView.reloadData("http://placeimg.com/160/160/tech","丹歌起势",KPLACEHOLDER,"⚙︎")
         sideView.setbtn.onClick { [weak self] b in
             self!.setupSidebtn(b)
         }
@@ -55,13 +57,16 @@ class ViewController: UIViewController {
         b.move(x: -50).rotate(angle: 360).animate(t: 0.5)
         b.completion = {
             ActionSheet.message("设置").tint(kAppColor).action("更改背景", {[weak self] in
-                self?.sideView.bg(kRandom+",0.5")
-                b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
-            }).action("随便点点", {
-                b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
+                self?.sideView.bg(kRandom+",0.7")
+                self?.setb(b)
+            }).action("随便点点", {[weak self] in
+                self?.setb(b)
             }).show()
             
         }
+    }
+    func setb(_ b:ChainableAnimator){
+        b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
     }
 
     func setupAnimator(){
@@ -73,14 +78,14 @@ class ViewController: UIViewController {
             animator.rotate(angle: -90).animate(t: 0.2);
             animator.completion = {
                 animator.rotate(angle: -180).animate(t: 0.5);
-                an.move(x: 300).animate(t: 0.5);
+                an.easeIn.move(x: 300).animate(t: 0.5);
                 side.move(x: 300).animate(t: 0.5)
             }
         default:
             animator.rotate(angle: 90).animate(t: 0.2);
             animator.completion = {
                 animator.rotate(angle: 180).animate(t: 0.5);
-                an.move(x: -300).animate(t: 0.5);
+                an.easeIn.move(x: -300).animate(t: 0.5);
                 side.move(x: -300).animate(t: 0.5)
             }
         }
@@ -94,11 +99,13 @@ extension ViewController: StackScrollViewDelegate {
         print("点击了\(model.title!)");
         if !s {
             setupAnimator()
+        }else{
+            let viewController = DetailViewController()
+            viewController.cc_setZoomTransition(originalView: view.liveBtns[index])
+            viewController.img.sd_setImage(with: URL(string: model.imageUrl!), placeholderImage: UIImage(named: "noNet"))
+            self.present(viewController, animated: true, completion: nil)
         }
-        let viewController = DetailViewController()
-        viewController.cc_setZoomTransition(originalView: view.liveBtns[index])
-        viewController.img.sd_setImage(with: URL(string: model.imageUrl!), placeholderImage: UIImage(named: "noNet"))
-        self.present(viewController, animated: true, completion: nil)
+        
 
     }
 }

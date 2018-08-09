@@ -11,7 +11,7 @@ import UIKit
 class SideView: UIView {
 
     lazy var icon: UIImageView = {
-        return ImageView.radius(10).border(2, kWhiteColor)
+        return ImageView.border(2, kWhiteColor)
     }()
     lazy var titlelab: UILabel = {
         return Label.color(kWhiteColor).font(24).align(.center)
@@ -48,7 +48,8 @@ class SideView: UIView {
         }
     }
     func reloadData(_ img:String,_ title:String,_ sub:String,_ set:Any){
-        icon.bg(img)
+        icon.sd_setImage(with: URL(string: img), placeholderImage: #imageLiteral(resourceName: "noNet"))
+        icon.radius(10)
         titlelab.text = title
         sublab.text = sub
         setbtn.str(set)
