@@ -30,14 +30,14 @@ class DetailViewController: UIViewController {
     lazy var img: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
-        img.alpha=0.3
+        img.alpha=0.4
         return img
     }()
     lazy var titlelab: DWAnimatedLabel = {
         let titlelab = DWAnimatedLabel()
         titlelab.animationType = .fade
         titlelab.placeHolderColor = .blue
-        return titlelab.bg(kRandom+",0.5")
+        return titlelab.bg(kBlackColor+",0.5")
             .font("24")
             .radius(8)
             .align(.center)
@@ -50,7 +50,7 @@ class DetailViewController: UIViewController {
         view.addSubviews(btn,botBtn,img,titlelab,tipsLab)
         setupUI()
         setupGesture()
-        titlelab.startAnimation(duration: 2.0, nil)
+        titlelab.startAnimation(duration: 1.5, nil)
     }
     func setupUI() {
         img.makeCons { (make) in
@@ -91,9 +91,9 @@ class DetailViewController: UIViewController {
         let animator = ChainableAnimator(view: titlelab)
         animator.move(x: -500).spring.easeIn.make(alpha: 0.0).animate(t: 1.0);
         animator.completion = {
-            animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.5);
+            animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.8);
         }
-        titlelab.startAnimation(duration: 4.0, nil)
+        titlelab.startAnimation(duration: 1.5, nil)
     }
     
 }

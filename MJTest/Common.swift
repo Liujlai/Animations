@@ -21,6 +21,7 @@ let isIPhone: Bool = {
 let kAppColor    = "#00C6B0"
 let kLineColor   = "#a8a8a8"
 let kWhiteColor  = "#ffffff"
+let kBlackColor  = "#000000"
 let kShadowColor = "#4a4a4a"
 let kRandom      = "random" //随机颜色
 
@@ -42,7 +43,10 @@ let KPLACEHOLDER = """
 卧龙低伏 入我阵来
 """
 
-//如果真机上动画在结束后闪烁在JHAnimationChainLink.m文件146行下加入以下代码
+//1.如果真机上动画在结束后闪烁在JHAnimationChainLink.m文件146行下加入以下代码
 //self.animationGroup.fillMode = kCAFillModeForwards;
 //self.animationGroup.removedOnCompletion = NO;  ///修改真机动画完成后闪烁的问题
+
+//2.DWAnimatedLabel 加载动画时cpu percentage used 会在90%⇡
+
 
