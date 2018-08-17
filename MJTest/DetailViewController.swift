@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import  ChainableAnimations
+import ChainableAnimations
 import DWAnimatedLabel
 class DetailViewController: UIViewController {
     
@@ -89,9 +89,9 @@ class DetailViewController: UIViewController {
     
     func setupAnimator(){
         let animator = ChainableAnimator(view: titlelab)
-        animator.move(x: -500).spring.easeIn.make(alpha: 0.0).animate(t: 1.0);
+        animator.move(x: -500).spring.easeIn.thenAfter(t: 0.5).make(alpha: 0.0).animate(t: 0.5);
         animator.completion = {
-            animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.8);
+            animator.move(x: 800).thenAfter(t: 0.1).move(x: -300).easeIn.make(alpha: 1.0).animate(t: 0.5);
         }
         titlelab.startAnimation(duration: 1.5, nil)
     }

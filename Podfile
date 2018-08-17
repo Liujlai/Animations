@@ -8,7 +8,7 @@ target 'MJTest' do
   pod 'SDWebImage'                                  #网络图片
   pod 'ChainableAnimations', '~> 3.0.1'               #动画
   pod 'DWAnimatedLabel', '~> 1.1'                    #label动画
-
+  pod 'RDGliderViewController-Swift'
   # Pods for MJTest
 
 end

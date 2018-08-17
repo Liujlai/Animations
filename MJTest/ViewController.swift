@@ -27,10 +27,21 @@ class ViewController: UIViewController {
         return Button.str("❂")
             .color(kAppColor)
             .font(38)
-            .pin(.maxX(-10),.y(0))
+            .pin(.maxX(-10),.y(10))
             .pin(80,80)
             .onClick({[weak self] _ in
                 self!.setupAnimator()
+            })
+    }()
+    
+    lazy var btn1: UIButton = {
+        return Button.str("✇")
+            .color(kAppColor)
+            .font(38)
+            .pin(.maxX(-10),.y(100))
+            .pin(80,80)
+            .onClick({[weak self] _ in
+                self?.setupPush()
             })
     }()
     var models: [StackModel] = {
@@ -46,7 +57,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-        view.addSubviews(sideView,scrollView,btn)
+        view.addSubviews(sideView,scrollView,btn,btn1)
         scrollView.makeCons { (make) in
             make.edge.equal(view)
         }
@@ -56,6 +67,9 @@ class ViewController: UIViewController {
         sideView.setbtn.onClick { [weak self] b in
             self!.setupSidebtn(b)
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     func setupSidebtn(_ setb:UIButton){
         let b = ChainableAnimator(view: setb)
@@ -73,7 +87,14 @@ class ViewController: UIViewController {
     func setb(_ b:ChainableAnimator){
         b.move(x: 50).rotate(angle: -360).animate(t: 1.0)
     }
-
+    func setupPush(){
+        let animator = ChainableAnimator(view: btn1)
+        animator.move(x: 10).spring.thenAfter(t: 0.1).move(x: -10).animate(t: 0.1);
+        animator.completion = {
+            self.navigationController?.pushViewController(GliderViewController(), animated: true)
+        }
+        
+    }
     func setupAnimator(){
         let animator = ChainableAnimator(view: btn)
         let an = ChainableAnimator(view: scrollView)
